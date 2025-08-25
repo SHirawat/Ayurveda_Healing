@@ -52,13 +52,15 @@ const Navigation = () => {
         </div>
 
         {/* CTA Button */}
-        <Button 
-          variant="default"
-          className="bg-gradient-bronze hover:opacity-90 text-white shadow-warm"
-          onClick={() => navigate("/assessment")}
-        >
-          Get Started
-        </Button>
+        {location.pathname !== "/results" && (
+          <Button 
+            variant="default"
+            className="bg-gradient-bronze hover:opacity-90 text-white shadow-warm"
+            onClick={() => navigate(location.pathname === "/assessment" ? "/consultation" : "/assessment")}
+          >
+            {location.pathname === "/assessment" ? "Book A Consultation" : "Get Started"}
+          </Button>
+        )}
       </div>
     </nav>
   );
