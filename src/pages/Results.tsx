@@ -112,7 +112,7 @@ Generated on: ${new Date().toLocaleDateString()}
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `Ayurvedic_Profile_Summary_${new Date().getTime()}.txt`;
+    link.download = `Ayurvedic_Profile_Summary_${new Date().getTime()}.pdf`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
