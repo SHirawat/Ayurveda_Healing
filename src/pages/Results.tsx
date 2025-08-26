@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
-import { Wind, Flame, Mountain, Star, Scale } from "lucide-react";
+import { Wind, Flame, Mountain, Star, Scale, Download } from "lucide-react";
 
 const Results = () => {
   const navigate = useNavigate();
@@ -72,6 +72,51 @@ const Results = () => {
     // Store contact data and navigate to consultation
     localStorage.setItem('contactData', JSON.stringify(contactForm));
     navigate('/consultation');
+  };
+
+  const handleDownloadPDF = () => {
+    // Create PDF content
+    const pdfContent = `
+AYURVEDIC PROFILE SUMMARY
+========================
+
+Personal Information:
+Name: ${contactForm.fullName || 'Not provided'}
+Email: ${contactForm.email || 'Not provided'}
+Phone: ${contactForm.phone || 'Not provided'}
+
+Dosha Profile:
+Primary Dosha: ${result.primary.dosha} (${result.primary.element})
+Secondary Dosha: ${result.secondary.dosha} (${result.secondary.element})
+
+Profile Description:
+${primaryDosha.description}
+
+Strengths:
+${primaryDosha.strengths}
+
+Areas for Balance:
+${primaryDosha.balance}
+
+Assessment Data:
+Body Frame: ${assessmentData?.bodyFrame || 'Not specified'}
+Digestion: ${assessmentData?.digestion || 'Not specified'}
+Stress Response: ${assessmentData?.stressResponse || 'Not specified'}
+Sleep Pattern: ${assessmentData?.sleepPattern || 'Not specified'}
+
+Generated on: ${new Date().toLocaleDateString()}
+    `;
+
+    // Create and download the PDF as text file (basic implementation)
+    const blob = new Blob([pdfContent], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `Ayurvedic_Profile_Summary_${new Date().getTime()}.txt`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
   };
 
   const result = getDoshaResult();
@@ -260,6 +305,15 @@ const Results = () => {
                     Get My Wellness Plan
                   </Button>
                 </form>
+                
+                <Button
+                  onClick={handleDownloadPDF}
+                  variant="outline"
+                  className="w-full mt-3 py-3 border-ayur-bronze text-ayur-bronze hover:bg-ayur-cream"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Download PDF Summary
+                </Button>
               </CardContent>
             </Card>
           </div>
