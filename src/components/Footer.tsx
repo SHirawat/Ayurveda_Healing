@@ -35,7 +35,7 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="font-semibold text-foreground">Quick Links</h3>
             <div className="space-y-2">
-              <a href="/" className="block text-muted-foreground hover:text-primary transition-colors text-sm">
+              <a href="src/pages/Home.tsx" className="block text-muted-foreground hover:text-primary transition-colors text-sm">
                 Home
               </a>
               <a href="/assessment" className="block text-muted-foreground hover:text-primary transition-colors text-sm">
@@ -75,7 +75,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-4 h-4 text-ayur-bronze" />
-                <span className="text-muted-foreground text-sm">Mumbai, Maharashtra</span>
+                <span className="text-muted-foreground text-sm">Bengluru, Karnataka</span>
               </div>
             </div>
           </div>
