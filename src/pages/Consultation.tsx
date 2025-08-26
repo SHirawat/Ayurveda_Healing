@@ -20,10 +20,8 @@ const Consultation = () => {
     const data = localStorage.getItem('contactData');
     if (data) {
       setContactData(JSON.parse(data));
-    } else {
-      navigate('/results');
     }
-  }, [navigate]);
+  }, []);
 
   const handlePayment = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,8 +29,6 @@ const Consultation = () => {
     alert("Payment successful! You will receive a confirmation email shortly.");
     navigate('/');
   };
-
-  if (!contactData) return null;
 
   return (
     <div className="min-h-screen bg-gradient-warm py-12">
