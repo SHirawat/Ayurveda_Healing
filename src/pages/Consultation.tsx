@@ -3,17 +3,22 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
 import { useNavigate } from "react-router-dom";
-import { Shield, Calendar, User, DollarSign } from "lucide-react";
+import { Shield, Calendar, User, CreditCard, Smartphone, Building } from "lucide-react";
 
 const Consultation = () => {
   const navigate = useNavigate();
   const [contactData, setContactData] = useState<any>(null);
+  const [paymentMethod, setPaymentMethod] = useState("card");
   const [paymentForm, setPaymentForm] = useState({
     cardNumber: "",
     expiryDate: "",
     cvc: "",
-    nameOnCard: ""
+    nameOnCard: "",
+    upiId: "",
+    netBankingBank: ""
   });
 
   useEffect(() => {
@@ -72,60 +77,129 @@ const Consultation = () => {
               <CardHeader>
                 <CardTitle className="text-xl text-foreground">Payment Details</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-6">
+                <div>
+                  <label className="text-sm font-medium text-foreground">Consultation Fee</label>
+                  <div className="mt-1 p-3 bg-muted rounded-md flex items-center justify-between">
+                    <span className="text-foreground">₹ 1500.00</span>
+                    <span className="text-xs text-muted-foreground">INR</span>
+                  </div>
+                </div>
+
+                {/* Payment Method Selection */}
+                <div>
+                  <label className="text-sm font-medium text-foreground mb-3 block">Choose Payment Method</label>
+                  <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod} className="space-y-3">
+                    <div className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-muted/50 transition-colors">
+                      <RadioGroupItem value="card" id="card" />
+                      <CreditCard className="w-5 h-5 text-blue-600" />
+                      <Label htmlFor="card" className="flex-1 cursor-pointer">Credit/Debit Card</Label>
+                    </div>
+                    
+                    <div className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-muted/50 transition-colors">
+                      <RadioGroupItem value="upi" id="upi" />
+                      <Smartphone className="w-5 h-5 text-green-600" />
+                      <Label htmlFor="upi" className="flex-1 cursor-pointer">UPI Payment</Label>
+                    </div>
+                    
+                    <div className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-muted/50 transition-colors">
+                      <RadioGroupItem value="netbanking" id="netbanking" />
+                      <Building className="w-5 h-5 text-purple-600" />
+                      <Label htmlFor="netbanking" className="flex-1 cursor-pointer">Net Banking</Label>
+                    </div>
+                  </RadioGroup>
+                </div>
+
                 <form onSubmit={handlePayment} className="space-y-4">
-                  <div>
-                    <label className="text-sm font-medium text-foreground">Consultation Fee</label>
-                    <div className="mt-1 p-3 bg-muted rounded-md flex items-center justify-between">
-                      <span className="text-foreground">₹ 1500.00</span>
-                      <span className="text-xs text-muted-foreground">INR</span>
+                  {/* Card Payment Form */}
+                  {paymentMethod === "card" && (
+                    <div className="space-y-4">
+                      <div>
+                        <label className="text-sm font-medium text-foreground">Card number</label>
+                        <Input
+                          placeholder="•••• •••• •••• ••••"
+                          value={paymentForm.cardNumber}
+                          onChange={(e) => setPaymentForm(prev => ({ ...prev, cardNumber: e.target.value }))}
+                          className="mt-1"
+                          required
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-sm font-medium text-foreground">Expiry date</label>
+                          <Input
+                            placeholder="MM / YY"
+                            value={paymentForm.expiryDate}
+                            onChange={(e) => setPaymentForm(prev => ({ ...prev, expiryDate: e.target.value }))}
+                            className="mt-1"
+                            required
+                          />
+                        </div>
+                        <div>
+                          <label className="text-sm font-medium text-foreground">CVC</label>
+                          <Input
+                            placeholder="•••"
+                            value={paymentForm.cvc}
+                            onChange={(e) => setPaymentForm(prev => ({ ...prev, cvc: e.target.value }))}
+                            className="mt-1"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="text-sm font-medium text-foreground">Name on card</label>
+                        <Input
+                          placeholder="Your name as it appears on card"
+                          value={paymentForm.nameOnCard}
+                          onChange={(e) => setPaymentForm(prev => ({ ...prev, nameOnCard: e.target.value }))}
+                          className="mt-1"
+                          required
+                        />
+                      </div>
                     </div>
-                  </div>
+                  )}
 
-                  <div>
-                    <label className="text-sm font-medium text-foreground">Card number</label>
-                    <Input
-                      placeholder="•••• •••• •••• ••••"
-                      value={paymentForm.cardNumber}
-                      onChange={(e) => setPaymentForm(prev => ({ ...prev, cardNumber: e.target.value }))}
-                      className="mt-1"
-                      required
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4">
+                  {/* UPI Payment Form */}
+                  {paymentMethod === "upi" && (
                     <div>
-                      <label className="text-sm font-medium text-foreground">Expiry date</label>
+                      <label className="text-sm font-medium text-foreground">UPI ID</label>
                       <Input
-                        placeholder="MM / YY"
-                        value={paymentForm.expiryDate}
-                        onChange={(e) => setPaymentForm(prev => ({ ...prev, expiryDate: e.target.value }))}
+                        placeholder="yourname@upi"
+                        value={paymentForm.upiId}
+                        onChange={(e) => setPaymentForm(prev => ({ ...prev, upiId: e.target.value }))}
                         className="mt-1"
                         required
                       />
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Enter your UPI ID (Google Pay, PhonePe, Paytm, etc.)
+                      </p>
                     </div>
-                    <div>
-                      <label className="text-sm font-medium text-foreground">CVC</label>
-                      <Input
-                        placeholder="•••"
-                        value={paymentForm.cvc}
-                        onChange={(e) => setPaymentForm(prev => ({ ...prev, cvc: e.target.value }))}
-                        className="mt-1"
-                        required
-                      />
-                    </div>
-                  </div>
+                  )}
 
-                  <div>
-                    <label className="text-sm font-medium text-foreground">Name on card</label>
-                    <Input
-                      placeholder="Your name as it appears on card"
-                      value={paymentForm.nameOnCard}
-                      onChange={(e) => setPaymentForm(prev => ({ ...prev, nameOnCard: e.target.value }))}
-                      className="mt-1"
-                      required
-                    />
-                  </div>
+                  {/* Net Banking Form */}
+                  {paymentMethod === "netbanking" && (
+                    <div>
+                      <label className="text-sm font-medium text-foreground">Select Bank</label>
+                      <select
+                        value={paymentForm.netBankingBank}
+                        onChange={(e) => setPaymentForm(prev => ({ ...prev, netBankingBank: e.target.value }))}
+                        className="mt-1 w-full p-3 border border-input bg-background rounded-md"
+                        required
+                      >
+                        <option value="">Choose your bank</option>
+                        <option value="sbi">State Bank of India</option>
+                        <option value="hdfc">HDFC Bank</option>
+                        <option value="icici">ICICI Bank</option>
+                        <option value="axis">Axis Bank</option>
+                        <option value="kotak">Kotak Mahindra Bank</option>
+                        <option value="pnb">Punjab National Bank</option>
+                        <option value="bob">Bank of Baroda</option>
+                        <option value="canara">Canara Bank</option>
+                      </select>
+                    </div>
+                  )}
 
                   <Button
                     type="submit"

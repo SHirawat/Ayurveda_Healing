@@ -52,7 +52,7 @@ const Navigation = () => {
         </div>
 
         {/* CTA Button */}
-        {location.pathname !== "/results" && (
+        {location.pathname !== "/results" && location.pathname !== "/consultation" && (
           <Button 
             variant="default"
             className="bg-gradient-bronze hover:opacity-90 text-white shadow-warm"
