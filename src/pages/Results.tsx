@@ -107,8 +107,8 @@ Sleep Pattern: ${assessmentData?.sleepPattern || 'Not specified'}
 Generated on: ${new Date().toLocaleDateString()}
     `;
 
-    // Create and download the PDF as text file (basic implementation)
-    const blob = new Blob([pdfContent], { type: 'text/plain' });
+    // Create and download the PDF file
+    const blob = new Blob([pdfContent], { type: 'application/pdf' });
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
