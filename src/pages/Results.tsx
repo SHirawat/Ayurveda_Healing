@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
 import { Wind, Flame, Mountain, Star, Scale, Download } from "lucide-react";
+import jsPDF from 'jspdf';
 
 const Results = () => {
   const navigate = useNavigate();
@@ -75,48 +76,91 @@ const Results = () => {
   };
 
   const handleDownloadPDF = () => {
-    // Create PDF content
-    const pdfContent = `
-AYURVEDIC PROFILE SUMMARY
-========================
+    const result = getDoshaResult();
+    if (!result) return;
 
-Personal Information:
-Name: ${contactForm.fullName || 'Not provided'}
-Email: ${contactForm.email || 'Not provided'}
-Phone: ${contactForm.phone || 'Not provided'}
-
-Dosha Profile:
-Primary Dosha: ${result.primary.dosha} (${result.primary.element})
-Secondary Dosha: ${result.secondary.dosha} (${result.secondary.element})
-
-Profile Description:
-${primaryDosha.description}
-
-Strengths:
-${primaryDosha.strengths}
-
-Areas for Balance:
-${primaryDosha.balance}
-
-Assessment Data:
-Body Frame: ${assessmentData?.bodyFrame || 'Not specified'}
-Digestion: ${assessmentData?.digestion || 'Not specified'}
-Stress Response: ${assessmentData?.stressResponse || 'Not specified'}
-Sleep Pattern: ${assessmentData?.sleepPattern || 'Not specified'}
-
-Generated on: ${new Date().toLocaleDateString()}
-    `;
-
-    // Create and download the PDF file
-    const blob = new Blob([pdfContent], { type: 'application/pdf' });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `Ayurvedic_Profile_Summary_${new Date().getTime()}.pdf`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    window.URL.revokeObjectURL(url);
+    const primaryDosha = getDoshaDescription(result.primary.dosha);
+    
+    // Create PDF using jsPDF
+    const doc = new jsPDF();
+    
+    // Add title
+    doc.setFontSize(20);
+    doc.setFont("helvetica", "bold");
+    doc.text("AYURVEDIC PROFILE SUMMARY", 20, 30);
+    
+    // Add line separator
+    doc.setLineWidth(0.5);
+    doc.line(20, 35, 190, 35);
+    
+    // Personal Information Section
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("Personal Information:", 20, 50);
+    
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "normal");
+    doc.text(`Name: ${contactForm.fullName || 'Not provided'}`, 20, 60);
+    doc.text(`Email: ${contactForm.email || 'Not provided'}`, 20, 70);
+    doc.text(`Phone: ${contactForm.phone || 'Not provided'}`, 20, 80);
+    
+    // Dosha Profile Section
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("Dosha Profile:", 20, 100);
+    
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "normal");
+    doc.text(`Primary Dosha: ${result.primary.dosha} (${result.primary.element})`, 20, 110);
+    doc.text(`Secondary Dosha: ${result.secondary.dosha} (${result.secondary.element})`, 20, 120);
+    
+    // Profile Description Section
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("Profile Description:", 20, 140);
+    
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "normal");
+    const splitDescription = doc.splitTextToSize(primaryDosha.description, 160);
+    doc.text(splitDescription, 20, 150);
+    
+    // Strengths Section
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("Strengths:", 20, 180);
+    
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "normal");
+    doc.text(primaryDosha.strengths, 20, 190);
+    
+    // Areas for Balance Section
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("Areas for Balance:", 20, 210);
+    
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "normal");
+    doc.text(primaryDosha.balance, 20, 220);
+    
+    // Assessment Data Section
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("Assessment Data:", 20, 240);
+    
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "normal");
+    doc.text(`Body Frame: ${assessmentData?.bodyFrame || 'Not specified'}`, 20, 250);
+    doc.text(`Digestion: ${assessmentData?.digestion || 'Not specified'}`, 20, 260);
+    doc.text(`Stress Response: ${assessmentData?.stressResponse || 'Not specified'}`, 20, 270);
+    doc.text(`Sleep Pattern: ${assessmentData?.sleepPattern || 'Not specified'}`, 20, 280);
+    
+    // Footer
+    doc.setFontSize(8);
+    doc.setFont("helvetica", "italic");
+    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 20, 290);
+    
+    // Save the PDF
+    doc.save(`Ayurvedic_Profile_Summary_${new Date().getTime()}.pdf`);
   };
 
   const result = getDoshaResult();
