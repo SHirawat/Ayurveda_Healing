@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
 import { Wind, Flame, Mountain, Star, Scale, Download } from "lucide-react";
 import jsPDF from 'jspdf';
+import ayurvedaFoods from "@/assets/ayurveda-foods.jpg";
+import cghLogoIcon from "@/assets/cgh-logo-icon.jpg";
 
 const Results = () => {
   const navigate = useNavigate();
@@ -84,83 +86,164 @@ const Results = () => {
     // Create PDF using jsPDF
     const doc = new jsPDF();
     
-    // Add title
-    doc.setFontSize(20);
-    doc.setFont("helvetica", "bold");
-    doc.text("AYURVEDIC PROFILE SUMMARY", 20, 30);
+    // Set background color for the entire page
+    doc.setFillColor(248, 250, 252); // Light gray background
+    doc.rect(0, 0, 210, 297, 'F');
     
-    // Add line separator
+    // Add header background
+    doc.setFillColor(34, 68, 51); // Deep green header
+    doc.rect(0, 0, 210, 50, 'F');
+    
+    // Add logo (placeholder circle for now)
+    doc.setFillColor(255, 255, 255);
+    doc.circle(30, 25, 12, 'F');
+    doc.setFillColor(34, 68, 51);
+    doc.circle(30, 25, 8, 'F');
+    
+    // Add main title in header
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(24);
+    doc.setFont("helvetica", "bold");
+    doc.text("CGH EARTH AYURVEDA", 50, 20);
+    
+    // Add subtitle
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "normal");
+    doc.text("Ayurvedic Profile Summary", 50, 30);
+    
+    // Add tagline
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "italic");
+    doc.text("Health in Totality", 50, 40);
+    
+    // Reset text color for body content
+    doc.setTextColor(51, 65, 85); // Dark gray
+    
+    // Add decorative line
+    doc.setLineWidth(2);
+    doc.setDrawColor(139, 69, 19); // Bronze color
+    doc.line(20, 60, 190, 60);
+    
+    // Personal Information Section with box
+    doc.setFillColor(255, 251, 235); // Warm cream background
+    doc.rect(15, 70, 180, 35, 'F');
+    doc.setDrawColor(139, 69, 19);
     doc.setLineWidth(0.5);
-    doc.line(20, 35, 190, 35);
+    doc.rect(15, 70, 180, 35, 'S');
     
-    // Personal Information Section
-    doc.setFontSize(14);
+    doc.setFontSize(16);
     doc.setFont("helvetica", "bold");
-    doc.text("Personal Information:", 20, 50);
+    doc.setTextColor(139, 69, 19); // Bronze
+    doc.text("Personal Information", 20, 80);
+    
+    doc.setFontSize(11);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(51, 65, 85);
+    doc.text(`Name: ${contactForm.fullName || 'Not provided'}`, 20, 88);
+    doc.text(`Email: ${contactForm.email || 'Not provided'}`, 20, 95);
+    doc.text(`Phone: ${contactForm.phone || 'Not provided'}`, 20, 102);
+    
+    // Dosha Profile Section with gradient-like effect
+    doc.setFillColor(240, 253, 244); // Light green
+    doc.rect(15, 115, 180, 45, 'F');
+    doc.setDrawColor(34, 197, 94);
+    doc.rect(15, 115, 180, 45, 'S');
+    
+    doc.setFontSize(16);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(22, 101, 52); // Dark green
+    doc.text("Your Dosha Profile", 20, 125);
+    
+    // Add dosha icons (simple shapes)
+    doc.setFillColor(139, 69, 19);
+    doc.circle(25, 138, 4, 'F'); // Primary dosha icon
+    doc.setFillColor(107, 114, 128);
+    doc.circle(25, 150, 3, 'F'); // Secondary dosha icon
     
     doc.setFontSize(12);
-    doc.setFont("helvetica", "normal");
-    doc.text(`Name: ${contactForm.fullName || 'Not provided'}`, 20, 60);
-    doc.text(`Email: ${contactForm.email || 'Not provided'}`, 20, 70);
-    doc.text(`Phone: ${contactForm.phone || 'Not provided'}`, 20, 80);
-    
-    // Dosha Profile Section
-    doc.setFontSize(14);
     doc.setFont("helvetica", "bold");
-    doc.text("Dosha Profile:", 20, 100);
-    
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "normal");
-    doc.text(`Primary Dosha: ${result.primary.dosha} (${result.primary.element})`, 20, 110);
-    doc.text(`Secondary Dosha: ${result.secondary.dosha} (${result.secondary.element})`, 20, 120);
+    doc.setTextColor(51, 65, 85);
+    doc.text(`Primary: ${result.primary.dosha} (${result.primary.element})`, 35, 140);
+    doc.text(`Secondary: ${result.secondary.dosha} (${result.secondary.element})`, 35, 152);
     
     // Profile Description Section
-    doc.setFontSize(14);
+    doc.setFillColor(254, 249, 195); // Light yellow
+    doc.rect(15, 170, 180, 50, 'F');
+    doc.setDrawColor(251, 191, 36);
+    doc.rect(15, 170, 180, 50, 'S');
+    
+    doc.setFontSize(16);
     doc.setFont("helvetica", "bold");
-    doc.text("Profile Description:", 20, 140);
+    doc.setTextColor(180, 83, 9); // Orange
+    doc.text("Profile Description", 20, 180);
     
     doc.setFontSize(10);
     doc.setFont("helvetica", "normal");
+    doc.setTextColor(51, 65, 85);
     const splitDescription = doc.splitTextToSize(primaryDosha.description, 160);
-    doc.text(splitDescription, 20, 150);
+    doc.text(splitDescription, 20, 188);
     
+    // Strengths and Balance sections side by side
     // Strengths Section
+    doc.setFillColor(220, 252, 231); // Light green
+    doc.rect(15, 230, 85, 30, 'F');
+    doc.setDrawColor(34, 197, 94);
+    doc.rect(15, 230, 85, 30, 'S');
+    
     doc.setFontSize(14);
     doc.setFont("helvetica", "bold");
-    doc.text("Strengths:", 20, 180);
+    doc.setTextColor(22, 101, 52);
+    doc.text("Strengths", 20, 240);
     
-    doc.setFontSize(12);
+    doc.setFontSize(10);
     doc.setFont("helvetica", "normal");
-    doc.text(primaryDosha.strengths, 20, 190);
+    doc.setTextColor(51, 65, 85);
+    const splitStrengths = doc.splitTextToSize(primaryDosha.strengths, 75);
+    doc.text(splitStrengths, 20, 248);
     
     // Areas for Balance Section
+    doc.setFillColor(254, 226, 226); // Light red
+    doc.rect(110, 230, 85, 30, 'F');
+    doc.setDrawColor(239, 68, 68);
+    doc.rect(110, 230, 85, 30, 'S');
+    
     doc.setFontSize(14);
     doc.setFont("helvetica", "bold");
-    doc.text("Areas for Balance:", 20, 210);
-    
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "normal");
-    doc.text(primaryDosha.balance, 20, 220);
-    
-    // Assessment Data Section
-    doc.setFontSize(14);
-    doc.setFont("helvetica", "bold");
-    doc.text("Assessment Data:", 20, 240);
+    doc.setTextColor(185, 28, 28);
+    doc.text("Areas for Balance", 115, 240);
     
     doc.setFontSize(10);
     doc.setFont("helvetica", "normal");
-    doc.text(`Body Frame: ${assessmentData?.bodyFrame || 'Not specified'}`, 20, 250);
-    doc.text(`Digestion: ${assessmentData?.digestion || 'Not specified'}`, 20, 260);
-    doc.text(`Stress Response: ${assessmentData?.stressResponse || 'Not specified'}`, 20, 270);
-    doc.text(`Sleep Pattern: ${assessmentData?.sleepPattern || 'Not specified'}`, 20, 280);
+    doc.setTextColor(51, 65, 85);
+    const splitBalance = doc.splitTextToSize(primaryDosha.balance, 75);
+    doc.text(splitBalance, 115, 248);
     
-    // Footer
+    // Assessment Data Section
+    doc.setFillColor(243, 244, 246); // Light gray
+    doc.rect(15, 270, 180, 20, 'F');
+    doc.setDrawColor(156, 163, 175);
+    doc.rect(15, 270, 180, 20, 'S');
+    
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(75, 85, 99);
+    doc.text("Assessment Data", 20, 278);
+    
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "normal");
+    doc.text(`Body Frame: ${assessmentData?.bodyFrame || 'Not specified'} | Digestion: ${assessmentData?.digestion || 'Not specified'}`, 20, 285);
+    
+    // Footer with branding
+    doc.setFillColor(34, 68, 51); // Dark green footer
+    doc.rect(0, 287, 210, 10, 'F');
+    
     doc.setFontSize(8);
     doc.setFont("helvetica", "italic");
-    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 20, 290);
+    doc.setTextColor(255, 255, 255);
+    doc.text(`Generated on: ${new Date().toLocaleDateString()} | CGH Earth Ayurveda - Treating the Source, Not the Symptom`, 20, 293);
     
     // Save the PDF
-    doc.save(`Ayurvedic_Profile_Summary_${new Date().getTime()}.pdf`);
+    doc.save(`CGH_Earth_Ayurveda_Profile_${new Date().getTime()}.pdf`);
   };
 
   const result = getDoshaResult();
@@ -212,8 +295,11 @@ const Results = () => {
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center space-y-4 mb-12 animate-fade-in">
           <h1 className="text-4xl font-bold text-foreground">
-            Your Ayurvedic Profile Results
+            Your CGH Earth Ayurveda Profile
           </h1>
+          <p className="text-muted-foreground text-lg">
+            Health in Totality - Treating the Source, Not the Symptom
+          </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">

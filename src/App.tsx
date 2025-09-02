@@ -20,10 +20,10 @@ const App = () => {
   const [showLoading, setShowLoading] = useState(true);
 
   useEffect(() => {
-    // Show loading screen for 7 seconds
+    // Show loading screen for less than 1 second
     const timer = setTimeout(() => {
       setShowLoading(false);
-    }, 7000);
+    }, 800);
 
     return () => clearTimeout(timer);
   }, []);

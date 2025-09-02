@@ -44,10 +44,10 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
         {/* Brand Name */}
         <div className="space-y-2">
           <h1 className="text-5xl font-bold text-ayur-cream tracking-wide">
-            AyurVeda
+            CGH Earth Ayurveda
           </h1>
           <p className="text-ayur-cream/80 text-lg">
-            Ancient Wisdom, Modern Wellness
+            Health in Totality
           </p>
         </div>
 
