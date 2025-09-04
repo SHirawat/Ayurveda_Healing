@@ -23,43 +23,42 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   }, [onComplete]);
 
   return (
-    <div className="fixed inset-0 bg-gradient-hero flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-gradient-to-br from-emerald-600 to-emerald-800 flex items-center justify-center z-50">
       <div className="text-center space-y-8 animate-fade-in">
-        {/* Ayurveda Symbol */}
+        {/* Logo */}
         <div className="relative">
-          <div className="w-24 h-24 mx-auto bg-ayur-cream rounded-full flex items-center justify-center animate-float">
-            <svg
-              viewBox="0 0 100 100"
-              className="w-12 h-12 text-ayur-bronze animate-spin-slow"
-              fill="currentColor"
-            >
-              <path d="M50 20 C35 30, 35 50, 50 60 C65 50, 65 30, 50 20 Z" />
-              <circle cx="50" cy="50" r="5" />
-              <path d="M50 80 C35 70, 35 50, 50 40 C65 50, 65 70, 50 80 Z" />
-            </svg>
+          <div className="w-32 h-32 mx-auto bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center animate-float">
+            <img 
+              src="/lovable-uploads/88b0f847-3165-4711-b9d1-33072d053667.png" 
+              alt="CGH Earth Ayurveda" 
+              className="h-16 w-auto"
+            />
           </div>
-          <div className="absolute inset-0 w-24 h-24 mx-auto border-2 border-ayur-cream/30 rounded-full animate-ping"></div>
+          <div className="absolute inset-0 w-32 h-32 mx-auto border-2 border-white/20 rounded-full animate-ping"></div>
         </div>
 
         {/* Brand Name */}
-        <div className="space-y-2">
-          <h1 className="text-5xl font-bold text-ayur-cream tracking-wide">
+        <div className="space-y-3">
+          <h1 className="text-5xl font-bold text-white tracking-wide font-serif">
             CGH Earth Ayurveda
           </h1>
-          <p className="text-ayur-cream/80 text-lg">
+          <p className="text-white/90 text-lg font-medium">
             Health in Totality
+          </p>
+          <p className="text-white/70 text-sm">
+            Treating the Source, Not the Symptom
           </p>
         </div>
 
         {/* Progress Bar */}
         <div className="w-64 mx-auto">
-          <div className="h-1 bg-ayur-cream/20 rounded-full overflow-hidden">
+          <div className="h-1 bg-white/20 rounded-full overflow-hidden">
             <div
-              className="h-full bg-ayur-cream transition-all duration-300 ease-out"
+              className="h-full bg-white transition-all duration-300 ease-out"
               style={{ width: `${progress}%` }}
             />
           </div>
-          <p className="text-ayur-cream/60 text-sm mt-2">
+          <p className="text-white/70 text-sm mt-2">
             Preparing your wellness journey...
           </p>
         </div>

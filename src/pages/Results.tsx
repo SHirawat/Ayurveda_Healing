@@ -291,13 +291,25 @@ const Results = () => {
   const primaryDosha = getDoshaDescription(result.primary.dosha);
 
   return (
-    <div className="min-h-screen bg-gradient-warm py-12">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50/30 to-white py-12">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center space-y-4 mb-12 animate-fade-in">
-          <h1 className="text-4xl font-bold text-foreground">
-            Your CGH Earth Ayurveda Profile
-          </h1>
-          <p className="text-muted-foreground text-lg">
+          <div className="flex items-center justify-center space-x-3 mb-4">
+            <img 
+              src="/lovable-uploads/88b0f847-3165-4711-b9d1-33072d053667.png" 
+              alt="CGH Earth Ayurveda" 
+              className="h-12 w-auto"
+            />
+            <div>
+              <h1 className="text-4xl font-bold text-emerald-700 font-serif">
+                Your Ayurvedic Profile
+              </h1>
+              <p className="text-emerald-600 font-medium">
+                CGH Earth Ayurveda
+              </p>
+            </div>
+          </div>
+          <p className="text-gray-600 text-lg">
             Health in Totality - Treating the Source, Not the Symptom
           </p>
         </div>
@@ -305,14 +317,14 @@ const Results = () => {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Results Section */}
           <div className="space-y-8">
-            <Card className="border-0 shadow-warm animate-slide-up">
+            <Card className="border border-emerald-100 shadow-lg animate-slide-up">
               <CardContent className="p-8 space-y-6">
                 <div className="text-center space-y-4">
                   <p className="text-lg text-muted-foreground">
                     Based on your responses, your Ayurvedic profile is predominantly{" "}
-                    <span className="font-semibold text-ayur-bronze">{result.primary.dosha}</span>{" "}
+                    <span className="font-semibold text-emerald-700">{result.primary.dosha}</span>{" "}
                     with a secondary influence of{" "}
-                    <span className="font-semibold text-ayur-bronze">{result.secondary.dosha}</span>.
+                    <span className="font-semibold text-emerald-700">{result.secondary.dosha}</span>.
                   </p>
                   <p className="text-muted-foreground">
                     {primaryDosha.description}
@@ -322,14 +334,14 @@ const Results = () => {
             </Card>
 
             {/* Key Insights */}
-            <Card className="border-0 shadow-soft animate-slide-up">
+            <Card className="border border-emerald-100 shadow-lg animate-slide-up">
               <CardHeader>
                 <CardTitle className="text-2xl text-foreground">Key Insights</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <div className="flex-shrink-0 w-12 h-12 bg-ayur-cream rounded-lg flex items-center justify-center text-ayur-bronze">
+                    <div className="flex-shrink-0 w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600">
                       {getDoshaIcon(result.primary.dosha)}
                     </div>
                     <div>
@@ -341,7 +353,7 @@ const Results = () => {
                   </div>
 
                   <div className="flex items-start space-x-3">
-                    <div className="flex-shrink-0 w-12 h-12 bg-ayur-cream rounded-lg flex items-center justify-center text-ayur-bronze">
+                    <div className="flex-shrink-0 w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600">
                       <Flame className="w-6 h-6" />
                     </div>
                     <div>
@@ -353,7 +365,7 @@ const Results = () => {
                   </div>
 
                   <div className="flex items-start space-x-3">
-                    <div className="flex-shrink-0 w-12 h-12 bg-ayur-cream rounded-lg flex items-center justify-center text-ayur-bronze">
+                    <div className="flex-shrink-0 w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600">
                       <Star className="w-6 h-6" />
                     </div>
                     <div>
@@ -365,7 +377,7 @@ const Results = () => {
                   </div>
 
                   <div className="flex items-start space-x-3">
-                    <div className="flex-shrink-0 w-12 h-12 bg-ayur-cream rounded-lg flex items-center justify-center text-ayur-bronze">
+                    <div className="flex-shrink-0 w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600">
                       <Scale className="w-6 h-6" />
                     </div>
                     <div>
@@ -382,7 +394,7 @@ const Results = () => {
 
           {/* Contact Form Section */}
           <div className="animate-slide-up">
-            <Card className="border-0 shadow-warm sticky top-8">
+            <Card className="border border-emerald-100 shadow-lg sticky top-8">
               <CardHeader>
                 <CardTitle className="text-2xl text-foreground">
                   Unlock Your Personalized Plan
@@ -430,7 +442,7 @@ const Results = () => {
 
                   <Button
                     type="submit"
-                    className="w-full bg-gradient-bronze hover:opacity-90 text-white py-6 text-lg font-semibold shadow-warm mt-6"
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-6 text-lg font-semibold shadow-lg mt-6"
                   >
                     Get My Wellness Plan
                   </Button>
@@ -439,7 +451,7 @@ const Results = () => {
                 <Button
                   onClick={handleDownloadPDF}
                   variant="outline"
-                  className="w-full mt-3 py-3 border-ayur-bronze text-ayur-bronze hover:bg-ayur-cream"
+                  className="w-full mt-3 py-3 border-emerald-600 text-emerald-700 hover:bg-emerald-50"
                 >
                   <Download className="w-4 h-4 mr-2" />
                   Download PDF Summary
