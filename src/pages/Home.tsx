@@ -2,7 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { Heart, Users, Sparkles, Leaf, MapPin, User, Stethoscope } from "lucide-react";
-import heroImage from "@/assets/ayurveda-hero.jpg";
+import heroImage from "@/assets/ayurveda-hero-new.jpg";
+import herbsImage from "@/assets/ayurveda-herbs.jpg";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -173,11 +174,15 @@ const Home = () => {
       </section>
 
       {/* What is Ayurveda Section */}
-      <section className="py-20 bg-gradient-to-b from-green-50/30 to-white">
-        <div className="max-w-6xl mx-auto px-6">
+      <section 
+        className="py-20 bg-cover bg-center relative"
+        style={{ backgroundImage: `url(${herbsImage})` }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-white/95 to-white/85" />
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
           <div className="text-center space-y-6 mb-16">
             <div className="flex items-center justify-center space-x-2 mb-4">
-              <Leaf className="w-8 h-8 text-emerald-600" />
+              <Leaf className="w-8 h-8 text-ayur-bronze" />
               <h2 className="text-4xl font-bold text-foreground font-serif">
                 What is Ayurveda?
               </h2>
@@ -196,18 +201,18 @@ const Home = () => {
                 className="text-center p-8 border border-emerald-100 shadow-lg bg-white/70 backdrop-blur-sm hover:shadow-xl transition-all duration-300"
               >
                 <CardContent className="space-y-6 p-0">
-                  <div className="mx-auto w-20 h-20 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-full flex items-center justify-center">
-                    <span className="text-2xl font-bold text-emerald-700">{dosha.name[0]}</span>
+                  <div className="mx-auto w-20 h-20 bg-gradient-to-br from-ayur-cream to-ayur-bronze-light/20 rounded-full flex items-center justify-center">
+                    <span className="text-2xl font-bold text-ayur-bronze">{dosha.name[0]}</span>
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-foreground font-serif mb-2">
                       {dosha.name}
                     </h3>
-                    <p className="text-emerald-600 font-medium mb-4">{dosha.element}</p>
+                    <p className="text-ayur-bronze font-medium mb-4">{dosha.element}</p>
                     <p className="text-muted-foreground mb-6">{dosha.description}</p>
                     <div className="space-y-2">
                       {dosha.characteristics.map((char, i) => (
-                        <span key={i} className="inline-block bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-sm mx-1">
+                        <span key={i} className="inline-block bg-ayur-cream text-ayur-bronze px-3 py-1 rounded-full text-sm mx-1">
                           {char}
                         </span>
                       ))}
@@ -225,7 +230,7 @@ const Home = () => {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center space-y-4 mb-16">
             <div className="flex items-center justify-center space-x-2 mb-4">
-              <User className="w-8 h-8 text-emerald-600" />
+              <User className="w-8 h-8 text-ayur-bronze" />
               <h2 className="text-4xl font-bold text-foreground font-serif">
                 Our Vaidyas
               </h2>
@@ -243,14 +248,14 @@ const Home = () => {
                 className="text-center p-6 border border-emerald-100 shadow-lg bg-gradient-to-b from-white to-emerald-50/30 hover:shadow-xl transition-all duration-300"
               >
                 <CardContent className="space-y-4 p-0">
-                  <div className="mx-auto w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center">
-                    <User className="w-8 h-8 text-emerald-600" />
+                  <div className="mx-auto w-16 h-16 bg-ayur-cream rounded-full flex items-center justify-center">
+                    <User className="w-8 h-8 text-ayur-bronze" />
                   </div>
                   <h3 className="text-xl font-bold text-foreground font-serif">
                     {vaidya.name}
                   </h3>
-                  <p className="text-emerald-600 font-medium">{vaidya.specialization}</p>
-                  <p className="text-sm text-emerald-500">{vaidya.experience}</p>
+                  <p className="text-ayur-bronze font-medium">{vaidya.specialization}</p>
+                  <p className="text-sm text-ayur-bronze-light">{vaidya.experience}</p>
                   <p className="text-muted-foreground text-sm">
                     {vaidya.description}
                   </p>
@@ -266,7 +271,7 @@ const Home = () => {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center space-y-4 mb-16">
             <div className="flex items-center justify-center space-x-2 mb-4">
-              <Stethoscope className="w-8 h-8 text-emerald-600" />
+              <Stethoscope className="w-8 h-8 text-ayur-bronze" />
               <h2 className="text-4xl font-bold text-foreground font-serif">
                 Our Treatments
               </h2>
@@ -284,8 +289,8 @@ const Home = () => {
                 className="p-6 border border-emerald-100 shadow-lg bg-white/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
                 <CardContent className="space-y-4 p-0">
-                  <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
-                    <Leaf className="w-6 h-6 text-emerald-600" />
+                  <div className="w-12 h-12 bg-ayur-cream rounded-lg flex items-center justify-center">
+                    <Leaf className="w-6 h-6 text-ayur-bronze" />
                   </div>
                   <h3 className="text-lg font-bold text-foreground font-serif">
                     {treatment.name}
@@ -293,7 +298,7 @@ const Home = () => {
                   <p className="text-muted-foreground text-sm">
                     {treatment.description}
                   </p>
-                  <p className="text-emerald-600 text-sm font-medium">
+                  <p className="text-ayur-bronze text-sm font-medium">
                     Duration: {treatment.duration}
                   </p>
                 </CardContent>
@@ -308,7 +313,7 @@ const Home = () => {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center space-y-4 mb-16">
             <div className="flex items-center justify-center space-x-2 mb-4">
-              <MapPin className="w-8 h-8 text-emerald-600" />
+              <MapPin className="w-8 h-8 text-ayur-bronze" />
               <h2 className="text-4xl font-bold text-foreground font-serif">
                 Treatment Centres
               </h2>
@@ -327,14 +332,14 @@ const Home = () => {
               >
                 <CardContent className="space-y-6 p-0">
                   <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
-                      <MapPin className="w-6 h-6 text-emerald-600" />
+                    <div className="w-12 h-12 bg-ayur-cream rounded-lg flex items-center justify-center">
+                      <MapPin className="w-6 h-6 text-ayur-bronze" />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-foreground font-serif">
                         {center.name}
                       </h3>
-                      <p className="text-emerald-600 text-sm">{center.location}</p>
+                      <p className="text-ayur-bronze text-sm">{center.location}</p>
                     </div>
                   </div>
                   <p className="text-muted-foreground">
@@ -343,7 +348,7 @@ const Home = () => {
                   <div className="space-y-2">
                     <p className="text-sm font-medium text-foreground">Key Features:</p>
                     {center.features.map((feature, i) => (
-                      <span key={i} className="inline-block bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-sm mr-2 mb-2">
+                      <span key={i} className="inline-block bg-ayur-cream text-ayur-bronze px-3 py-1 rounded-full text-sm mr-2 mb-2">
                         {feature}
                       </span>
                     ))}
@@ -367,7 +372,7 @@ const Home = () => {
           </p>
           <Button
             size="lg"
-            className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+            className="bg-ayur-bronze hover:bg-ayur-bronze-light text-white px-8 py-6 text-lg font-semibold shadow-warm hover:shadow-xl transition-all duration-300"
             onClick={() => navigate("/assessment")}
           >
             Start Your Journey

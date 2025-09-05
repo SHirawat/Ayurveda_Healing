@@ -14,7 +14,7 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="w-full px-6 py-4 bg-white/80 backdrop-blur-sm border-b border-emerald-100 shadow-sm">
+    <nav className="w-full px-6 py-4 bg-white/80 backdrop-blur-sm border-b border-ayur-bronze/20 shadow-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div 
@@ -23,13 +23,9 @@ const Navigation = () => {
         >
           <img 
             src="/lovable-uploads/88b0f847-3165-4711-b9d1-33072d053667.png" 
-            alt="CGH Earth Ayurveda" 
+            alt="Ayurveda Wellness" 
             className="h-8 w-auto"
           />
-          <div>
-            <span className="text-xl font-bold text-emerald-700 font-serif">CGH Earth</span>
-            <div className="text-sm text-emerald-600 font-medium -mt-1">Ayurveda</div>
-          </div>
         </div>
 
         {/* Navigation Links */}
@@ -38,9 +34,9 @@ const Navigation = () => {
             <button
               key={item.name}
               onClick={() => navigate(item.path)}
-              className={`text-sm font-medium transition-colors hover:text-emerald-600 ${
+              className={`text-sm font-medium transition-colors hover:text-ayur-bronze ${
                 location.pathname === item.path
-                  ? "text-emerald-600 border-b-2 border-emerald-600 pb-1"
+                  ? "text-ayur-bronze border-b-2 border-ayur-bronze pb-1"
                   : "text-gray-600"
               }`}
             >
@@ -53,7 +49,7 @@ const Navigation = () => {
         {location.pathname !== "/results" && location.pathname !== "/consultation" && (
           <Button 
             variant="default"
-            className="bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg"
+            className="bg-ayur-bronze hover:bg-ayur-bronze-light text-white shadow-warm"
             onClick={() => navigate(location.pathname === "/assessment" ? "/consultation" : "/assessment")}
           >
             {location.pathname === "/assessment" ? "Book A Consultation" : "Get Started"}

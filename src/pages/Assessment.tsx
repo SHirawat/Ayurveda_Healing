@@ -344,7 +344,7 @@ const Assessment = () => {
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2">
               <div 
-                className="bg-emerald-600 h-2 rounded-full transition-all duration-300"
+                className="bg-ayur-bronze h-2 rounded-full transition-all duration-300"
                 style={{ width: `${progressPercentage}%` }}
               ></div>
             </div>
@@ -374,10 +374,10 @@ const Assessment = () => {
         </div>
 
         {/* Current Section */}
-        <Card className="shadow-lg border border-emerald-100 animate-slide-up">
+        <Card className="shadow-lg border border-ayur-bronze/20 animate-slide-up">
           <CardHeader className="pb-6 bg-gradient-to-r from-emerald-50 to-white">
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 bg-ayur-cream rounded-lg flex items-center justify-center">
                 <span className="text-2xl">{sections[currentSection].icon}</span>
               </div>
               <div>
@@ -395,7 +395,7 @@ const Assessment = () => {
             {sections[currentSection].questions.map((question, questionIndex) => (
               <div key={question.key} className="space-y-4">
                 <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-700 font-semibold text-sm mt-1">
+                  <div className="w-8 h-8 bg-ayur-cream rounded-full flex items-center justify-center text-ayur-bronze font-semibold text-sm mt-1">
                     {questionIndex + 1}
                   </div>
                   <div className="flex-1">
@@ -407,7 +407,7 @@ const Assessment = () => {
                         value={formData[question.key as keyof typeof formData]} 
                         onValueChange={(value) => handleAnswerChange(question.key, value)}
                       >
-                        <SelectTrigger className="border-emerald-200 focus:border-emerald-500 focus:ring-emerald-500">
+                        <SelectTrigger className="border-ayur-bronze/30 focus:border-ayur-bronze focus:ring-ayur-bronze">
                           <SelectValue placeholder="Choose the option that best describes you" />
                         </SelectTrigger>
                         <SelectContent>
@@ -425,13 +425,13 @@ const Assessment = () => {
             ))}
 
             {/* Navigation Buttons */}
-            <div className="flex justify-between pt-6 border-t border-emerald-100">
+            <div className="flex justify-between pt-6 border-t border-ayur-bronze/20">
               <Button
                 type="button"
                 variant="outline"
                 onClick={prevSection}
                 disabled={currentSection === 0}
-                className="border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+                className="border-ayur-bronze/30 text-ayur-bronze hover:bg-ayur-cream"
               >
                 Previous Section
               </Button>
@@ -440,7 +440,7 @@ const Assessment = () => {
                 <Button
                   onClick={handleSubmit}
                   disabled={getTotalAnsweredCount() < getTotalQuestions()}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 text-lg font-semibold shadow-lg"
+                  className="bg-ayur-bronze hover:bg-ayur-bronze-light text-white px-8 py-3 text-lg font-semibold shadow-warm"
                 >
                   Get My Results
                 </Button>
@@ -448,7 +448,7 @@ const Assessment = () => {
                 <Button
                   onClick={nextSection}
                   disabled={!isCurrentSectionComplete()}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                  className="bg-ayur-bronze hover:bg-ayur-bronze-light text-white"
                 >
                   Next Section
                 </Button>

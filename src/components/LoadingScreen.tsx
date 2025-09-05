@@ -23,7 +23,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   }, [onComplete]);
 
   return (
-    <div className="fixed inset-0 bg-gradient-to-br from-emerald-600 to-emerald-800 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-gradient-hero flex items-center justify-center z-50">
       <div className="text-center space-y-8 animate-fade-in">
         {/* Logo */}
         <div className="relative">
@@ -40,7 +40,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
         {/* Brand Name */}
         <div className="space-y-3">
           <h1 className="text-5xl font-bold text-white tracking-wide font-serif">
-            CGH Earth Ayurveda
+            Ayurveda Wellness
           </h1>
           <p className="text-white/90 text-lg font-medium">
             Health in Totality
