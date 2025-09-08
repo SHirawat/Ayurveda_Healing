@@ -47,13 +47,24 @@ const Navigation = () => {
 
         {/* CTA Button */}
         {location.pathname !== "/results" && location.pathname !== "/consultation" && (
-          <Button 
-            variant="default"
-            className="bg-ayur-bronze hover:bg-ayur-bronze-light text-white shadow-warm"
-            onClick={() => navigate(location.pathname === "/assessment" ? "/consultation" : "/assessment")}
-          >
-            {location.pathname === "/assessment" ? "Book A Consultation" : "Get Started"}
-          </Button>
+          location.pathname === "/assessment" ? (
+            <Button 
+              variant="default"
+              className="bg-ayur-bronze hover:bg-ayur-bronze-light text-white shadow-warm"
+              onClick={() => navigate("/consultation")}
+            >
+              Book A Consultation
+            </Button>
+          ) : (
+            <a
+              href="https://www.cghearthayurveda.com/ayurveda-consultation/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-ayur-bronze hover:bg-ayur-bronze-light text-white shadow-warm h-10 px-4 py-2"
+            >
+              Consult Now
+            </a>
+          )
         )}
       </div>
     </nav>
