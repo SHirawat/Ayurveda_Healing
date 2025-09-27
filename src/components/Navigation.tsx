@@ -23,10 +23,9 @@ const Navigation = () => {
         >
           <img 
             src="/lovable-uploads/88b0f847-3165-4711-b9d1-33072d053667.png" 
-            alt="CGH Earth Ayurveda" 
+            alt="Ayurveda Wellness" 
             className="h-8 w-auto"
           />
-          <span className="text-lg font-bold text-ayur-bronze">CGH EARTH AYURVEDA</span>
         </div>
 
         {/* Navigation Links */}
