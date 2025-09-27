@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation } from "react-router-dom";
+import cghLogo from "@/assets/cgh-logo.png";
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -22,8 +23,8 @@ const Navigation = () => {
           onClick={() => navigate("/")}
         >
           <img 
-            src="/lovable-uploads/88b0f847-3165-4711-b9d1-33072d053667.png" 
-            alt="Ayurveda Wellness" 
+            src={cghLogo} 
+            alt="CGH Earth Ayurveda" 
             className="h-8 w-auto"
           />
         </div>
