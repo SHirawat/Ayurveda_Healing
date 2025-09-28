@@ -140,9 +140,12 @@ const Home = () => {
       <section className="py-20 bg-gradient-warm">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-4xl font-bold text-foreground">
-              How to get Started?
-            </h2>
+            <div className="flex items-center justify-center space-x-2 mb-4">
+              <Sparkles className="w-8 h-8 text-ayur-bronze" />
+              <h2 className="text-4xl font-bold text-foreground font-serif">
+                How to get Started?
+              </h2>
+            </div>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Begin your Ayurvedic wellness journey with these simple steps to unlock 
               personalized insights and recommendations.
