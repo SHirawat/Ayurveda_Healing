@@ -141,11 +141,11 @@ const Home = () => {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center space-y-4 mb-16">
             <h2 className="text-4xl font-bold text-foreground">
-              Why Choose AyurVeda?
+              How to get Started?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our app combines ancient wisdom with modern technology to provide you with
-              accurate and actionable insights into your health.
+              Begin your Ayurvedic wellness journey with these simple steps to unlock 
+              personalized insights and recommendations.
             </p>
           </div>
 
