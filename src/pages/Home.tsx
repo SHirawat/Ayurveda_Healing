@@ -11,18 +11,18 @@ const Home = () => {
   const features = [
     {
       icon: <Heart className="w-8 h-8 text-ayur-bronze" />,
-      title: "Personalized Insights",
-      description: "Receive tailored recommendations based on your unique Ayurvedic profile."
+      title: "Understand your dosha",
+      description: "Complete our questionnaire to discover your unique Ayurvedic constitution."
     },
     {
       icon: <Sparkles className="w-8 h-8 text-ayur-bronze" />,
-      title: "Holistic Approach",
-      description: "Address the root causes of imbalances for long-term well-being."
+      title: "Get personalised lifestyle recommendations",
+      description: "Receive customized advice for diet, exercise, and daily routines based on your dosha."
     },
     {
       icon: <Users className="w-8 h-8 text-ayur-bronze" />,
-      title: "Community Support",
-      description: "Connect with like-minded individuals on a similar wellness journey."
+      title: "Tell us how it's working for you",
+      description: "Share your progress and experiences as you implement your wellness plan."
     }
   ];
 
